@@ -92,6 +92,20 @@
             transition: width .1s, height .1s;
             width: 32px;
         }
+
+        .custom-marker {
+            width: 20px;
+            height: 20px;
+            background-color: red;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 14px;
+            font-weight: bold;
+            text-align: center;
+        }
     </style>
 
     <body>
@@ -120,50 +134,40 @@
 
             map.addControl(new tt.NavigationControl());
 
+            // // Create a custom HTML element for the marker
+            // // LABEL 
+            // var markerDiv = document.createElement('div');
+            // markerDiv.className = 'custom-marker';
+            // markerDiv.innerHTML = 'GEYLANG';
+
+            // // Add the custom marker to the map
+            // var customMarker = new tt.Marker({
+            //     element: markerDiv,
+            //     anchor: 'bottom' // Ensure the bottom of the marker is at the correct location
+            // })
+            // .setLngLat([103.8918, 1.3201]) // Coordinates for the marker in Geylang 
+            // .addTo(map);
+
+            // marker.togglePopup();
+
             // Create a custom HTML element for the marker
+            // Red Circle 
             var markerDiv = document.createElement('div');
             markerDiv.className = 'custom-marker';
-            markerDiv.innerHTML = 'GEYLANG';
+            markerDiv.title = 'Singapore'; // Add a tooltip
 
             // Add the custom marker to the map
             var customMarker = new tt.Marker({
                 element: markerDiv,
                 anchor: 'bottom' // Ensure the bottom of the marker is at the correct location
             })
-            .setLngLat([103.8918, 1.3201]) // Coordinates for the marker in Singapore
-            .addTo(map);
+                .setLngLat([103.8918, 1.3201]) // Coordinates for the marker in Geylang
+                .addTo(map);
 
-            marker.togglePopup();
-            // RoutingAB.prototype.setCloseButton = function() {
-            //         var inputContainer = document.querySelector('.tt-search-box-input-container');
-            //         this.closeButton.classList.remove('-hidden');
-
-            //         if (document.querySelector('.my-location-button')) {
-            //             inputContainer.replaceChild(this.closeButton, this.upperSearchboxIcon);
-            //         }
-            //     };
-
-            //     RoutingAB.prototype.switchToMyLocationButton = function() {
-            //         var inputContainer = document.querySelector('.tt-search-box-input-container');
-            //         inputContainer.replaceChild(this.upperSearchboxIcon, this.closeButton);
-            //     };
-
-            //     RoutingAB.prototype.findFirstBuildingLayerId = function() {
-            //         var layers = map.getStyle().layers;
-            //         for (var index in layers) {
-            //             if (layers[index].type === 'fill-extrusion') {
-            //                 return layers[index].id;
-            //             }
-            //         }
-
-            //         throw new Error('Map style does not contain any layer with fill-extrusion type.');
-            //     };
-
-            //     new RoutingAB();
         </script>
         <footer>
             <p>&copy; 2024 Hackathon Project</p>
         </footer>
     </body>
 
-    </html>
+</html>
