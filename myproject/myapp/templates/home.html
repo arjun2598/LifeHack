@@ -110,20 +110,30 @@
 
         <script src='https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.25.1/maps/maps-web.min.js'></script>
         <script src='https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.25.1/services/services-web.min.js'></script>
-        <script type='text/javascript' src='../assets/js/mobile-or-tablet.js'></script>
-        <script type='text/javascript' src='../assets/js/info-hint.js'></script>
-        <script type='text/javascript' src='../assets/js/search/searchbox-enter-submit.js'></script>
-        <script type='text/javascript' src='../assets/js/foldable.js'></script>
         <script>
             var map = tt.map({
                 key: 'vdZkUuKVjGHjPLQfhKGQmH9akt0DROHg',
                 container: 'map',
-                center: [-74.0060, 40.7128], 
-                zoom: 12
+                center: [103.8198, 1.3521],
+                zoom: 11
             });
-            map.addControl(new tt.NavigationControl());
-            new Foldable('#foldable', 'top-right');
 
+            map.addControl(new tt.NavigationControl());
+
+            // Create a custom HTML element for the marker
+            var markerDiv = document.createElement('div');
+            markerDiv.className = 'custom-marker';
+            markerDiv.innerHTML = 'GEYLANG';
+
+            // Add the custom marker to the map
+            var customMarker = new tt.Marker({
+                element: markerDiv,
+                anchor: 'bottom' // Ensure the bottom of the marker is at the correct location
+            })
+            .setLngLat([103.8918, 1.3201]) // Coordinates for the marker in Singapore
+            .addTo(map);
+
+            marker.togglePopup();
             // RoutingAB.prototype.setCloseButton = function() {
             //         var inputContainer = document.querySelector('.tt-search-box-input-container');
             //         this.closeButton.classList.remove('-hidden');
