@@ -24,11 +24,12 @@ def k_means_clustering(data, num_clusters):
     """
     kmeans = KMeans(n_clusters=num_clusters, random_state=0)
     kmeans.fit(data)
-    labels = kmeans.labels_
     centroids = kmeans.cluster_centers_
-    return labels, centroids
+    df = pd.DataFrame(centroids)
+    df.to_csv('./clustering/clusters.csv', index=False)
+    
+    
 
-# test = [[103.8607, 1.2834], [103.8159, 1.3138], [103.8303, 1.2494], [103.7075, 1.3192], [103.9915, 1.3644]]
-data = read_file("./random_coordinates_singapore.csv") 
-print(k_means_clustering(data, 20)[1])
+data = read_file("./clustering/random_coordinates_singapore.csv") 
+k_means_clustering(data, 20)
 
