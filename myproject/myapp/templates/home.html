@@ -1,18 +1,35 @@
 {%load static%}
 
-<meta http-equiv='X-UA-Compatible' content='IE=Edge' />
-<meta charset='UTF-8'>
-<title>Crime Hotspots and Patrol Routes</title>
-<meta name='viewport' content='width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no' />
-<link rel="stylesheet" href="{% static 'css/styles.css' %}">
-<link rel='stylesheet' type='text/css' href='https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.25.1/maps/maps.css'>
-<link rel='stylesheet' type='text/css' href='../assets/ui-library/index.css' />
-<link rel='stylesheet' type='text/css' href='../assets/ui-library/icons-css/routing.css' />
-<link rel='stylesheet' type='text/css'
-    href='https://api.tomtom.com/maps-sdk-for-web/cdn/plugins/SearchBox/3.2.0//SearchBox.css' />
-<script src='https://api.tomtom.com/maps-sdk-for-web/cdn/plugins/SearchBox/3.2.0//SearchBox-web.js'></script>
-
-</head>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv='X-UA-Compatible' content='IE=Edge' />
+    <meta charset='UTF-8'>
+    <title>Crime Hotspots and Patrol Routes</title>
+    <meta name='viewport' content='width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no' />
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel='stylesheet' type='text/css' href='https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.25.1/maps/maps.css'>
+    <link rel='stylesheet' type='text/css' href='../assets/ui-library/index.css' />
+    <link rel='stylesheet' type='text/css' href='../assets/ui-library/icons-css/routing.css' />
+    <link rel='stylesheet' type='text/css'
+        href='https://api.tomtom.com/maps-sdk-for-web/cdn/plugins/SearchBox/3.2.0//SearchBox.css' />
+    <script src='https://api.tomtom.com/maps-sdk-for-web/cdn/plugins/SearchBox/3.2.0//SearchBox-web.js'></script>
+    <!-- Style for red hotspot marker. not sure why it breaks when put in style sheet-->
+    <style>
+        .custom-marker {
+        width: 20px;
+        height: 20px;
+        background-color: rgba(255, 0, 0, 0.5);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 14px;
+        font-weight: bold;
+        text-align: center;
+        }
+    </style>
 </head>
 
 <body>
@@ -20,154 +37,52 @@
         <h1>Crime Hotspots and Patrol Routes</h1>
     </header>
 
-    <style>
-        #map {
-            height: 500px;
-            width: 100%;
-            margin: 0 auto;
-        }
-
-        #foldable {
-            width: 320px;
-        }
-
-        #form {
-            margin-top: 10px;
-        }
-
-        .icon {
-            background-size: cover;
-            height: 30px;
-            width: 30px;
-        }
-
-        .tt-icon-size {
-            height: 500px !important;
-            padding: 80px;
-            width: 800px !important;
-        }
-
-        .icon-spacing-right {
-            margin-right: 12px;
-            margin-top: 22px;
-        }
-
-        .icon-spacing-left {
-            margin-left: 12px;
-            margin-top: 24px;
-        }
-
-        .tt-search-box-input {
-            width: calc(100% - 25px) !important;
-        }
-
-        .searchbox-container {
-            display: flex;
-        }
-
-        .searchbox-container>.tt-search-box {
-            flex: 1;
-            padding-right: 26px;
-        }
-
-        .my-location-button {
-            background-image: url("https://api.tomtom.com/maps-sdk-for-web/cdn/static/my-location.svg");
-            cursor: pointer;
-            margin-left: 7px;
-            padding: 12px;
-        }
-
-        .my-location-button:hover {
-            background-image: url("https://api.tomtom.com/maps-sdk-for-web/cdn/static/my-location-hover.svg");
-        }
-
-        .route-marker {
-            align-items: center;
-            background-color: #4a90e2;
-            border: solid 3px #2faaff;
-            border-radius: 50%;
-            display: flex;
-            height: 32px;
-            justify-content: center;
-            transition: width .1s, height .1s;
-            width: 32px;
-        }
-
-        .custom-marker {
-            width: 20px;
-            height: 20px;
-            background-color: red;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 14px;
-            font-weight: bold;
-            text-align: center;
-        }
-    </style>
-
-    <body>
+    <main>
         <div id='map' class='map'>
-            <div id='foldable' class='tt-overlay-panel -left-top -medium js-foldable'>
-                <form id=form>
-                    <div id='startSearchBox' class='searchbox-container'>
-                        <div class='tt-icon tt-icon-size icon-spacing-right -start'></div>
-                    </div>
-                    <div id='finishSearchBox' class='searchbox-container'>
-                        <div class='tt-icon tt-icon-size icon-spacing-right -finish'></div>
-                    </div>
-                </form>
-            </div>
         </div>
+    </main>
+    
+    <footer>
+        <p>&copy; 2024 Hackathon Project</p>
+    </footer>
 
-        <script src='https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.25.1/maps/maps-web.min.js'></script>
-        <script src='https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.25.1/services/services-web.min.js'></script>
-        <script>
-            var map = tt.map({
-                key: 'vdZkUuKVjGHjPLQfhKGQmH9akt0DROHg',
-                container: 'map',
-                center: [103.8198, 1.3521],
-                zoom: 11
-            });
+    <script src='https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.25.1/maps/maps-web.min.js'></script>
+    <script src='https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.25.1/services/services-web.min.js'></script>
+    <script>
+        var map = tt.map({
+            key: 'vdZkUuKVjGHjPLQfhKGQmH9akt0DROHg',
+            container: 'map',
+            center: [103.8198, 1.3521],
+            zoom: 11
+        });
 
-            map.addControl(new tt.NavigationControl());
+        map.addControl(new tt.NavigationControl());
 
-            // // Create a custom HTML element for the marker
-            // // LABEL 
-            // var markerDiv = document.createElement('div');
-            // markerDiv.className = 'custom-marker';
-            // markerDiv.innerHTML = 'GEYLANG';
-
-            // // Add the custom marker to the map
-            // var customMarker = new tt.Marker({
-            //     element: markerDiv,
-            //     anchor: 'bottom' // Ensure the bottom of the marker is at the correct location
-            // })
-            // .setLngLat([103.8918, 1.3201]) // Coordinates for the marker in Geylang 
-            // .addTo(map);
-
-            // marker.togglePopup();
-
-            // Create a custom HTML element for the marker
-            // Red Circle 
+        // Function to create a marker
+        function createMarker(lngLat, title) {
             var markerDiv = document.createElement('div');
             markerDiv.className = 'custom-marker';
-            markerDiv.title = 'Singapore'; // Add a tooltip
+            markerDiv.title = title; 
 
-            // Add the custom marker to the map
-            var customMarker = new tt.Marker({
+            new tt.Marker({
                 element: markerDiv,
-                anchor: 'bottom' // Ensure the bottom of the marker is at the correct location
+                anchor: 'bottom'
             })
-                .setLngLat([103.8918, 1.3201]) // Coordinates for the marker in Geylang
-                .addTo(map);
+            .setLngLat(lngLat)
+            .addTo(map);
+        }
 
-        </script>
-        <footer>
-            <p>&copy; 2024 Hackathon Project</p>
-        </footer>
-    </body>
+        // List of markers
+        var markers = [
+            { lngLat: [103.8918, 1.3201], title: 'Geylang' },
+            { lngLat: [103.83183, 1.304833], title: 'Orchard' },
+            { lngLat: [103.851959, 1.290270], title: 'Marina Bay' },
+        ];
 
+        // Add markers to the map
+        markers.forEach(function(marker) {
+            createMarker(marker.lngLat, marker.title);
+        });
+    </script>
+</body>
 </html>
