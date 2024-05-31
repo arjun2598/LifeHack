@@ -24,6 +24,13 @@
     <main>
         <div id='map' class='map'>
         </div>
+        
+    </main>
+    
+    <main>
+        <form action="/map">
+            <button type="submit">Go To Map</button>
+        </form>
     </main>
     
     <footer>
@@ -71,6 +78,24 @@
         markers.forEach(function(marker) {
             createMarker(marker.lngLat, marker.title);
         });
+
+        var displayRoute = function(geoJSON) {
+            routeLayer = map.addLayer({
+                'id' : 'route',
+                'type' : 'line',
+                'source' : {
+                    'type' : 'geojson',
+                    'data' : geoJSON
+                },
+                'paint' : {
+                    'line-color' : 'blue',
+                    'line-width' : 5
+                }
+            })
+        }
+        
     </script>
+    
 </body>
+
 </html>
