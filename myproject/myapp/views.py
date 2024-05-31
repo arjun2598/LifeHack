@@ -3,23 +3,23 @@ from django.shortcuts import render
 def home(request):
     return render(request, 'home.html')
 
-def map0(request):
-    return render(request, 'map0.html')
+def amk(request):
+    return render(request, 'amk.html')
 
-def map1(request):
-    return render(request, 'map1.html')
+def bedok(request):
+    return render(request, 'bedok.html')
 
-def map2(request):
-    return render(request, 'map2.html')
+def central(request):
+    return render(request, 'central.html')
 
-def map3(request):
-    return render(request, 'map3.html')
+def jurong(request):
+    return render(request, 'jurong.html')
 
-def map4(request):
-    return render(request, 'map4.html')
+def tanglin(request):
+    return render(request, 'tanglin.html')
 
-def map5(request):
-    return render(request, 'map5.html')
+def woodlands(request):
+    return render(request, 'woodlands.html')
 
-def map6(request):
-    return render(request, 'map6.html')
+def airport(request):
+    return render(request, 'airport.html')

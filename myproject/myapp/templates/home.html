@@ -50,13 +50,16 @@
         map.addControl(new tt.NavigationControl());
 
         // Function to create a marker
-        function createMarker(lngLat, title) {
-            var markerDiv = document.createElement('div');
-            markerDiv.className = 'custom-marker';
-            markerDiv.title = title; 
+        function createMarker(lngLat, title, url) {
+            var markerButton = document.createElement('button');
+            markerButton.className = 'custom-marker';
+            markerButton.title = title;
+            markerButton.onclick = function() {
+                window.open(url, '_blank'); // Opens the URL in a new tab
+            }
 
             new tt.Marker({
-                element: markerDiv,
+                element: markerButton,
                 anchor: 'bottom'
             })
             .setLngLat(lngLat)
@@ -65,18 +68,18 @@
 
         // List of markers
         var markers = [
-            { lngLat: [103.84508966643547, 1.3850969869082566], title: 'AMK' },
-            { lngLat: [103.93716055293469, 1.3328855285307624], title: 'Bedok' },
-            { lngLat: [103.83975222595029, 1.278604029532352], title: 'Central' },
-            { lngLat: [103.70234408177062, 1.3511457864334573], title: 'Jurong' },
-            { lngLat: [103.84670982409857, 1.3123442012770405], title: 'Tanglin' },
-            { lngLat: [103.77883793759092, 1.4332850043061145], title: 'Woodlands' },
-            { lngLat: [103.98103923150593, 1.3431877727562795], title: 'Airport' },
+            { lngLat: [103.84508966643547, 1.3850969869082566], title: 'AMK', url: 'amk' },
+            { lngLat: [103.93716055293469, 1.3328855285307624], title: 'Bedok', url: 'bedok' },
+            { lngLat: [103.83975222595029, 1.278604029532352], title: 'Central', url: 'central' },
+            { lngLat: [103.70234408177062, 1.3511457864334573], title: 'Jurong', url: 'jurong' },
+            { lngLat: [103.84670982409857, 1.3123442012770405], title: 'Tanglin', url: 'tanglin' },
+            { lngLat: [103.77883793759092, 1.4332850043061145], title: 'Woodlands', url: 'woodlands' },
+            { lngLat: [103.98103923150593, 1.3431877727562795], title: 'Airport', url: 'airport' },
         ];
 
         // Add markers to the map
         markers.forEach(function(marker) {
-            createMarker(marker.lngLat, marker.title);
+            createMarker(marker.lngLat, marker.title, marker.url);
         });
 
         var displayRoute = function(geoJSON) {
