@@ -1,9 +1,9 @@
 import random
 import csv
 
-# Singapore's mainland boundaries (approximated for simplicity):
-# Latitude: 1.2 to 1.5
-# Longitude: 103.6 to 104.0
+# Singapore's mainland boundaries (approximated such that minimal clusters in unreachable points):
+# Latitude: 1.296918 to 1.412878
+# Longitude: 103.739994 to 103.900289
 
 # Function to generate random coordinates
 def generate_random_coordinates(n, lat_range, lon_range):
@@ -14,7 +14,7 @@ def generate_random_coordinates(n, lat_range, lon_range):
         coordinates.append((lat, lon))
     return coordinates
 
-# Generate 500 random coordinates
+# Generate 250 random coordinates
 num_coordinates = 250
 lat_range = (1.296918, 1.412878)
 lon_range = (103.739994, 103.900289)
