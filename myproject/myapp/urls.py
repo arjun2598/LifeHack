@@ -9,6 +9,7 @@ urlpatterns = [
     path('jurong', views.jurong, name='jurong'),
     path('tanglin', views.tanglin, name='tanglin'),
     path('woodlands', views.woodlands, name='woodlands'),
-    path('airport', views.airport, name='airport')
-
+    path('airport', views.airport, name='airport'),
+    path('upload/', views.upload_file, name='upload_file'),
+    path('success/', views.success, name='success')
 ]

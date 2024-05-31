@@ -30,6 +30,12 @@
     <main>
         <form action="/map">
             <button type="submit">Go To Map</button>
+            <form method="post" enctype="multipart/form-data">
+            <input type="file"> 
+            {% csrf_token %}
+            <button type="submit">Upload</button>
+        </form>
+
         </form>
     </main>
     
