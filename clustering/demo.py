@@ -29,6 +29,6 @@ def k_means_clustering(data, num_clusters):
     return labels, centroids
 
 # test = [[103.8607, 1.2834], [103.8159, 1.3138], [103.8303, 1.2494], [103.7075, 1.3192], [103.9915, 1.3644]]
-data = read_file("./clustering/crime_data_500.csv") 
+data = read_file("./random_coordinates_singapore.csv") 
 print(k_means_clustering(data, 20)[1])
 
