@@ -1,17 +1,16 @@
 import openrouteservice as ors
 import folium
 import heapq
+import pandas as pd
 
-# Coordinate list
-markers = [
-    [103.84508966643547, 1.3850969869082566],  # AMK
-    [103.93716055293469, 1.3328855285307624],  # Bedok
-    [103.83975222595029, 1.278604029532352],   # Central
-    [103.70234408177062, 1.3511457864334573],  # Jurong
-    [103.84670982409857, 1.3123442012770405],  # Tanglin
-    [103.77883793759092, 1.4332850043061145],  # Woodlands
-    [103.98103923150593, 1.3431877727562795]   # Airport
-]
+# Create Division list
+def read_file(file):
+    df = pd.read_csv(file)
+    df1 = df[["Longitude", "Latitude"]]
+    return df1.values.tolist()
+
+divisions = read_file("./divisions.csv")
+
 # Cluster list
 clusters = [[103.8894943,    1.37137097],
  [103.75384243,   1.32832649],
@@ -90,7 +89,7 @@ def createMap(start, stops, index):
 
     m.save(f'map{index}.html')
 
-for marker_index, start in enumerate(markers):
+for marker_index, start in enumerate(divisions):
     distArray = []
     for cluster in clusters:
         dist = distance(start, cluster)
