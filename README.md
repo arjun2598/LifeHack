@@ -7,7 +7,7 @@
 ## Solution Overview
 
 <p>
-  Given a dataset of local crimes, clusters will be generated following K-Means Clustering and corresponds to crime hotspots. Then, using the openrouteservice API, routes from each police division to its nearest clusters are generated, comparing the coordinates of each division with the coordinates of each cluster's centroid.
+  Given a dataset of local crimes, clusters will be generated following K-Means Clustering and corresponds to crime hotspots. Then, using openrouteservice API, routes from each police division to its nearest clusters are generated, by comparing the coordinates of each division with the coordinates of each cluster's centroid.
 </p>
 
 ## How to Use
